@@ -1,32 +1,4 @@
 const mongoose = require('mongoose');
-
-const periodSchema = new mongoose.Schema({
-  startDate: {
-    type: Date,
-    required: true
-  },
-  endDate: {
-    type: Date,
-    required: true
-  },
-  flowLength: {
-    type: Number,
-    required: true
-  },
-  notes: {
-    type: String
-  }
-}, {
-  timestamps: true
-});
-
-const Period = mongoose.model('Period', periodSchema);
-
-module.exports = Period;
-
-////
-const mongoose = require('mongoose');
-
 const periodSchema = new mongoose.Schema({
   startDate: {
     type: Date,
@@ -75,3 +47,7 @@ const periodSchema = new mongoose.Schema({
 
 const Period = mongoose.model('Period', periodSchema);
 module.exports = Period;
+
+
+//Reference: https://youtu.be/EXEvXOG6vgU
+//Reference: https://kb.objectrocket.com/mongo-db/a-nodejs-mongoose-schema-example-1204

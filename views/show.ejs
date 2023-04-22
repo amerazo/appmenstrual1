@@ -1,61 +1,158 @@
 
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 
 <head>
+  <!-- //The <%= period.startDate %> and <%= period.endDate %> tags are used to display the start and end dates of a menstrual period. These values are passed into the file from the server-side code using the templating engine. -->
   <title><%= period.startDate %> - <%= period.endDate %></title>
+
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 
 <body>
+  <!-- /NAV contains links to the home page and a form for creating a new menstrual period. -->
   <nav>
     <a href="/">Home</a>
     <a href="/periods/new">New Period</a>
   </nav>
-
   <h1><%= period.startDate %> - <%= period.endDate %></h1>
 
-  <p><strong>Flow Length:</strong> <%= period.flowLength %> days</p>
-
-  <% if (period.notes) { %>
-    <p><strong>Notes:</strong> <%= period.notes %></p>
-  <% } %>
-
-  <h2>Symptoms:</h2>
-
-  <p><strong>Flow Level:</strong> <%= period.flowLevel %></p>
-
-  <% if (period.cramps) { %>
-    <p><strong>Cramps:</strong> <%= period.cramps %></p>
-  <% } %>
-
-  <% if (Array.isArray(period.emotional) && period.emotional.length) { %>
-    <p><strong>Emotional:</strong> <%= period.emotional.join(', ') %></p>
-  <% } %>
-
-  <% if (Array.isArray(period.physical) && period.physical.length) { %>
-    <p><strong>Physical:</strong> <%= period.physical.join(', ') %></p>
-  <% } %>
-
-  <% if (period.otherPhysical) { %>
-    <p><strong>Other Physical:</strong> <%= period.otherPhysical %></p>
-  <% } %>
-
-  <% if (Array.isArray(period.discharge) && period.discharge.length) { %>
-    <p><strong>Discharge:</strong> <%= period.discharge.join(', ') %></p>
-  <% } %>
-
-  <% if (period.temperature) { %>
-    <p><strong>Temperature:</strong> <%= period.temperature %> degrees Fahrenheit</p>
-  <% } %>
-
-  <a href="/periods/<%= period.id %>/edit">Edit</a>
-
-  <form action="/periods/<%= period.id %>?_method=DELETE" method="POST">
-    <button type="submit">Delete</button>
-  </form>
+  <!-- //Form includes several input fields for collecting data about the menstrual period, including the start and end dates, flow level, cramps, emotional state, physical symptoms, discharge, and body temperature. -->
+  <!-- //Created a date picker widget that allows the user to select a date from a calendar. In this code, the start and end dates of the menstrual period are displayed using this widget  -->
+  <!-- //Formatting dates for the calendar. I attempted to do a third party integration using fullcalendar, it was too difficult. So I used the one in JavaScript. Reference: https://youtu.be/-eRsWqwcPuk -->
+  <form action="/periods/<%= period.id %>?_method=PUT" method="POST">
+    <label for="startDate">Start Date</label>
+    <input type="date" id="startDate" name="period[startDate]" value="<%= period.startDate.toISOString().slice(0, 10) %>" required>
+    <label for="endDate">End Date</label>
+    <input type="date" id="endDate" name="period[endDate]" value="<%= period.endDate.toISOString().slice(0, 10) %>" required>
+    <h2>Symptoms</h2>
+    <h3>Flow Level</h3>
+    <label>
+      <!-- Used Radio JavaScript function for selection of symptoms etc. Reference: https://youtu.be/J254pngGt6E -->
+      <input type="radio" name="period[flowLevel]" value="spotting" <%= (period.flowLevel === 'spotting') ? 'checked' : '' %>>
+      Spotting
+    </label>
+    <br>
+    <label>
+      <input type="radio" name="period[flowLevel]" value="light" <%= (period.flowLevel === 'light') ? 'checked' : '' %>>
+      Light
+    </label>
+    <br>
+    <label>
+      <input type="radio" name="period[flowLevel]" value="medium" <%= (period.flowLevel === 'medium') ? 'checked' : '' %>>
+      Medium
+    </label>
+    <label>
+      <input type="radio" name="period[flowLevel]" value="heavy" <%= (period.flowLevel === 'heavy') ? 'checked' : '' %>>
+      Heavy
+    </label>
+    <br>
+    <h3>Cramps</h3>
+    <label>
+      <input type="radio" name="period[cramps]" value="Light Cramps" <%= (period.cramps === 'Light Cramps') ? 'checked' : '' %>>
+      Light Cramps
+    </label>
+    <label>
+      <input type="radio" name="period[cramps]" value="Heavy Cramps" <%= (period.cramps === 'Heavy Cramps') ? 'checked' : '' %>>
+      Heavy Cramps
+    </label>
+    <br>
+    <h3>Emotional</h3>
+  <label>
+    <input type="checkbox" name="period[emotional]" value="sad">
+    Sad
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[emotional]" value="tearful">
+    Tearful
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[emotional]" value="anxious">
+    Anxious
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[emotional]" value="angry">
+    Angry
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[emotional]" value="frustrated">
+    Frustrated
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[emotional]" value="joyful">
+    Joyful
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[emotional]" value="peaceful">
+    Peaceful
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[emotional]" value="meh">
+    Meh
+  </label>
+  <br>
+  <h3>Physical</h3>
+<label>
+  <input type="checkbox" name="period[physical]" value="breast sensitivity">
+  Breast Sensitivity
+</label>
+<br>
+<label>
+  <input type="checkbox" name="period[physical]" value="back pain">
+  Back Pain
+</label>
+<br>
+<label>
+  <input type="checkbox" name="period[physical]" value="nausea">
+  Nausea
+</label>
+<br>
+<label>
+  <input type="checkbox" name="period[physical]" value="bloating">
+  Bloating
+</label>
+<br>
+<label>
+  <input type="checkbox" name="period[physical]" value="cramps">
+  Cramps
+</label>
+<br>
+<label>
+  <input type="checkbox" name="period[physical]" value="other">
+  Other:
+  <input type="text" name="period[otherPhysical]">
+</label>
+<br>
+<h3>Discharge</h3>
+<label>
+  <input type="radio" name="period[discharge]" value="clear">
+  Clear
+</label>
+<br>
+<label>
+  <input type="radio" name="period[discharge]" value="do not want to answer">
+  Do not want to answer
+</label>
+<br>
+<label>
+  <input type="radio" name="period[discharge]" value="none">
+  None
+</label>
+<br>
+<h3>Body Temperature</h3>
+<label>
+  <input type="number" name="period[temperature]">
+</label>
+<br>
+<button type="submit">Submit</button>
+<input type="hidden" name="selectedDate" id="selectedDate">
+</form>
 </body>
-
 </html>
-
