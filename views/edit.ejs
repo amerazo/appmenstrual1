@@ -1,0 +1,197 @@
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+  <title>Edit <%= period.startDate %> - <%= period.endDate %></title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/periods/new">New Period</a>
+  </nav>
+  <h1>Edit <%= period.startDate %> - <%= period.endDate %></h1>
+  <form action="/periods/<%= period.id %>?_method=PUT" method="POST">
+    <label for="startDate">Start Date</label>
+    <input type="date" id="startDate" name="period[startDate]" value="<%= period.startDate.toISOString().slice(0, 10) %>" required>
+
+    <label for="endDate">End Date</label>
+    <input type="date" id="endDate" name="period[endDate]" value="<%= period.endDate.toISOString().slice(0, 10) %>" required>
+
+    <label for="flowLength">Flow Length</label>
+    <input type="number" id="flowLength" name="period[flowLength]" value="<%= period.flowLength %>" min="0" required>
+
+    <label for="notes">Notes</label>
+    <textarea id="notes" name="period[notes]"><%= period.notes %></textarea>
+
+    <button type="submit">Update</button>
+  </form>
+</body>
+
+</html>
+
+
+   -->
+
+   <!DOCTYPE html>
+   <html>
+   
+   <head>
+     <title>Edit <%= period.startDate %> - <%= period.endDate %></title>
+     <link rel="stylesheet" href="/css/style.css" />
+   </head>
+   
+   <body>
+     <nav>
+       <a href="/">Home</a>
+       <a href="/periods/new">New Period</a>
+     </nav>
+     <h1>Edit <%= period.startDate %> - <%= period.endDate %></h1>
+     <form action="/periods/<%= period.id %>?_method=PUT" method="POST">
+       <label for="startDate">Start Date</label>
+       <input type="date" id="startDate" name="period[startDate]" value="<%= period.startDate.toISOString().slice(0, 10) %>" required>
+   
+       <label for="endDate">End Date</label>
+       <input type="date" id="endDate" name="period[endDate]" value="<%= period.endDate.toISOString().slice(0, 10) %>" required>
+   
+       <label for="flowLength">Flow Length</label>
+       <input type="number" id="flowLength" name="period[flowLength]" value="<%= period.flowLength %>" min="0" required>
+   
+       <label for="notes">Notes</label>
+       <textarea id="notes" name="period[notes]"><%= period.notes %></textarea>
+   
+       <h2>Symptoms</h2>
+       <h3>Flow Level</h3>
+       <label>
+         <input type="radio" name="period[flowLevel]" value="spotting" <% if (period.flowLevel === 'spotting') { %>checked<% } %>>
+         Spotting
+       </label>
+       <br>
+       <label>
+         <input type="radio" name="period[flowLevel]" value="light" <% if (period.flowLevel === 'light') { %>checked<% } %>>
+         Light
+       </label>
+       <br>
+       <label>
+         <input type="radio" name="period[flowLevel]" value="medium" <% if (period.flowLevel === 'medium') { %>checked<% } %>>
+         Medium
+       </label>
+       <label>
+         <input type="radio" name="period[flowLevel]" value="heavy" <% if (period.flowLevel === 'heavy') { %>checked<% } %>>
+         Heavy
+       </label>
+       <br>
+   
+       <h3>Cramps</h3>
+       <label>
+         <input type="radio" name="period[cramps]" value="Light Cramps" <% if (period.cramps === 'Light Cramps') { %>checked<% } %>>
+         Light Cramps
+       </label>
+       <label>
+         <input type="radio" name="period[cramps]" value="Heavy Cramps" <% if (period.cramps === 'Heavy Cramps') { %>checked<% } %>>
+         Heavy
+       </label>
+       <br>
+   
+       <h3>Emotional</h3>
+       <label>
+         <input type="checkbox" name="period[emotional]" value="sad" <%= period.emotional.includes('sad') ? 'checked' : '' %>>
+         Sad
+       </label>
+       <br>
+       <label>
+         <input type="checkbox" name="period[emotional]" value="tearful" <%= period.emotional.includes('tearful') ? 'checked' : '' %>>
+         Tearful
+       </label>
+       <br>
+       <label>
+         <input type="checkbox" name="period[emotional]" value="anxious" <%= period.emotional.includes('anxious') ? 'checked' : '' %>>
+         Anxious
+       </label>
+       <br>
+       <label>
+         <input type="checkbox" name="period[emotional]" value="angry" <%= period.emotional.includes('angry') ? 'checked' : '' %>>
+         Angry
+       </label>
+       <br>
+       <label>
+         <input type="checkbox" name="period[emotional]" value="frustrated" <%= period.emotional.includes('frustrated') ? 'checked' : '' %>>
+         Frustrated
+       </label>
+       <br>
+       <label>
+         <input type="checkbox" name="period[emotional]" value="joyful" <%= period.emotional.includes('joyful') ? 'checked' : '' %>>
+         Joyful
+       </label>
+       <br>
+       <label>
+         <input type="checkbox" name="period[emotional]" value="peaceful" <%= period.emotional.includes('peaceful') ? 'checked' : '' %>>
+         Peaceful
+       </label>
+       <br>
+       <label>
+         <input type="checkbox" name="period[emotional]" value="meh" <%= period.emotional.includes('meh') ? 'checked' : '' %>>
+         Meh
+       </label>
+       <br>
+       <h3>Physical</h3>
+       <label>
+         <input type="checkbox" name="period[physical][]" value="breast sensitivity" <% if (period.physical.includes('breast sensitivity')) { %>checked <% } %>>
+         Breast Sensitivity
+       </label>
+       <br>
+       <label>
+         <input type="checkbox" name="period[physical][]" value="back pain" <% if (period.physical.includes('back pain')) { %>checked <% } %>>
+         Back Pain
+       </label>
+       <br>
+       <label>
+         <input type="checkbox" name="period[physical][]" value="nausea" <% if (period.physical.includes('nausea')) { %>checked <% } %>>
+         Nausea
+       </label>
+       <br>
+       <label>
+         <input type="checkbox" name="period[physical][]" value="bloating" <% if (period.physical.includes('bloating')) { %>checked <% } %>>
+         Bloating
+       </label>
+       <br>
+       <label>
+         <input type="checkbox" name="period[physical][]" value="cramps" <% if (period.physical.includes('cramps')) { %>checked <% } %>>
+         Cramps
+       </label>
+       <br>
+       <label>
+         <input type="checkbox" name="period[physical][]" value="other" <% if (period.physical.includes('other')) { %>checked <% } %>>
+         Other:
+         <input type="text" name="period[otherPhysical]" value="<%= period.otherPhysical %>">
+       </label>
+       <br>
+     
+       <h3>Discharge</h3>
+       <label>
+         <input type="checkbox" name="period[discharge][]" value="clear" <% if (period.discharge.includes('clear')) { %>checked <% } %>>
+         Clear
+       </label>
+       <br>
+       <label>
+         <input type="checkbox" name="period[discharge][]" value="do not want to answer" <% if (period.discharge.includes('do not want to answer')) { %>checked <% } %>>
+         Do not want to answer
+       </label>
+       <br>
+       <label>
+         <input type="checkbox" name="period[discharge][]" value="none" <% if (period.discharge.includes('none')) { %>checked <% } %>>
+         None
+       </label>
+       <br>
+     
+       <h3>Body Temperature</h3>
+       <label>
+         <input type="number" name="period[temperature]" value="<%= period.temperature %>">
+       </label>
+       <br>
+       
+       <button type="submit">Submit</button>
+       <input type="hidden" name="selectedDate" id="selectedDate">
+     </form>
+     

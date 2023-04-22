@@ -1,0 +1,155 @@
+<html>
+  <head>
+    <title>New Period</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/periods/new">New Period</a>
+    </nav>
+    <h1>New Period</h1>
+<body>
+<form action="/periods" method="POST">
+  <label for="startDate">Start Date</label>
+  <input type="date" id="startDate" name="period[startDate]" required>
+
+  <label for="endDate">End Date</label>
+  <input type="date" id="endDate" name="period[endDate]" required>
+  <h2>Symptoms</h2>
+  <h3>Flow Level</h3>
+  <label>
+    <input type="radio" name="period[flowLevel]" value="spotting">
+    Spotting
+  </label>
+  <br>
+  <label>
+    <input type="radio" name="period[flowLevel]" value="light">
+    Light
+  </label>
+  <br>
+  <label>
+    <input type="radio" name="period[flowLevel]" value="medium">
+    Medium
+  </label>
+  <label>
+    <input type="radio" name="period[flowLevel]" value="heavy">
+    Heavy
+  </label>
+  <br>
+
+  <h3>Cramps</h3>
+  <label>
+    <input type="radio" name="period[cramps]" value="Light Cramps">
+    Light Cramps
+  </label>
+  <label>
+    <input type="radio" name="period[cramps]" value="Heavy Cramps">
+    Heavy
+  </label>
+  <br>
+  <h3>Emotional</h3>
+  <label>
+    <input type="checkbox" name="period[emotional]" value="sad">
+    Sad
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[emotional]" value="tearful">
+    Tearful
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[emotional]" value="anxious">
+    Anxious
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[emotional]" value="angry">
+    Angry
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[emotional]" value="frustrated">
+    Frustrated
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[emotional]" value="joyful">
+    Joyful
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[emotional]" value="peaceful">
+    Peaceful
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[emotional]" value="meh">
+    Meh
+  </label>
+  <br> -->
+  <h3>Physical</h3>
+  <label>
+    <input type="checkbox" name="period[physical]" value="breast sensitivity">
+    Breast Sensitivity
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[physical]" value="back pain">
+    Back Pain
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[physical]" value="nausea">
+    Nausea
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[physical]" value="bloating">
+    Bloating
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[physical]" value="cramps">
+    Cramps
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[physical]" value="other">
+    Other:
+    <input type="text" name="period[otherPhysical]">
+  </label>
+  <br>
+
+  <h3>Discharge</h3>
+  <label>
+    <input type="checkbox" name="period[discharge]" value="clear">
+    Clear
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[discharge]" value="do not want to answer">
+    Do not want to answer
+  </label>
+  <br>
+  <label>
+    <input type="checkbox" name="period[discharge]" value="none">
+    None
+  </label>
+  <br>
+
+  <h3>Body Temperature</h3>
+  <label>
+    <input type="number" name="period[temperature]">
+  </label>
+  <br>
+      <button type="submit">Submit</button>
+      <input type="hidden" name="selectedDate" id="selectedDate">
+    </form>
+  </body>
+  </html>
+    
+  
+
+

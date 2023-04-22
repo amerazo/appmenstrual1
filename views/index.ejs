@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Menstrual App</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/periods/new">New Period</a>
+  </nav>
+
+  <h1>Period Tracker</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>FlowLevel</th>
+        <th>Cramps</th>
+        <th>Emotions</th>
+        <th>Physical Symptoms</th>
+        <th>Discharge</th>
+        <th>Temperature</th>
+        <th>Notes</th>
+        <th>Actions</th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% periods.forEach(period => { %>
+        <tr>
+          <td><%= period.startDate %></td>
+          <td><%= period.endDate %></td>
+          <td><%= period.flowLevel %> days</td>
+          <td><%= period.cramps %></td>
+          <td><%= period.emotional %> </td>
+          <td><%= period.physical %> </td>
+          <td><%= period.discharge %> </td>
+          <td><%= period.temperature %> </td>
+          <td><%= period.notes %></td>
+          <td>
+            <a href="/periods/<%= period.id %>">View</a> |
+            <a href="/periods/<%= period.id %>/edit">Edit</a> |
+            <form action="/periods/<%= period.id %>?_method=DELETE" method="POST" style="display:inline">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+
+</html>

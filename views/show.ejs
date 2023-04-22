@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= period.startDate %> - <%= period.endDate %></title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/periods/new">New Period</a>
+  </nav>
+
+  <h1><%= period.startDate %> - <%= period.endDate %></h1>
+
+  <p><strong>Flow Length:</strong> <%= period.flowLength %> days</p>
+
+  <% if (period.notes) { %>
+    <p><strong>Notes:</strong> <%= period.notes %></p>
+  <% } %>
+
+  <h2>Symptoms:</h2>
+
+  <p><strong>Flow Level:</strong> <%= period.flowLevel %></p>
+
+  <% if (period.cramps) { %>
+    <p><strong>Cramps:</strong> <%= period.cramps %></p>
+  <% } %>
+
+  <% if (Array.isArray(period.emotional) && period.emotional.length) { %>
+    <p><strong>Emotional:</strong> <%= period.emotional.join(', ') %></p>
+  <% } %>
+
+  <% if (Array.isArray(period.physical) && period.physical.length) { %>
+    <p><strong>Physical:</strong> <%= period.physical.join(', ') %></p>
+  <% } %>
+
+  <% if (period.otherPhysical) { %>
+    <p><strong>Other Physical:</strong> <%= period.otherPhysical %></p>
+  <% } %>
+
+  <% if (Array.isArray(period.discharge) && period.discharge.length) { %>
+    <p><strong>Discharge:</strong> <%= period.discharge.join(', ') %></p>
+  <% } %>
+
+  <% if (period.temperature) { %>
+    <p><strong>Temperature:</strong> <%= period.temperature %> degrees Fahrenheit</p>
+  <% } %>
+
+  <a href="/periods/<%= period.id %>/edit">Edit</a>
+
+  <form action="/periods/<%= period.id %>?_method=DELETE" method="POST">
+    <button type="submit">Delete</button>
+  </form>
+</body>
+
+</html>
+
